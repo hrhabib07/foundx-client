@@ -449,7 +449,7 @@
     "@react-types/shared" "3.23.1"
     clsx "^1.2.1"
 
-"@nextui-org/system@2.2.5":
+"@nextui-org/system@2.2.5", "@nextui-org/system@^2.2.5":
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/@nextui-org/system/-/system-2.2.5.tgz#e8c5968daf4e5b90a79b889d0b12464fd8182ebb"
   integrity sha512-nrX6768aiyWtpxX3OTFBIVWR+v9nlMsC3KaBinNfek97sNm7gAfTHi7q5kylE3L5yIMpNG+DclAKpuxgDQEmvw==
@@ -462,7 +462,7 @@
     "@react-aria/utils" "3.24.1"
     "@react-stately/utils" "3.10.1"
 
-"@nextui-org/theme@2.2.9":
+"@nextui-org/theme@^2.2.9":
   version "2.2.9"
   resolved "https://registry.yarnpkg.com/@nextui-org/theme/-/theme-2.2.9.tgz#adecdc069cf62c3337e92d65edc13b1a1210115e"
   integrity sha512-TN2I9sMriLaj00pXsIMlg19+UHeOdjzS2JV0u4gjL14mSbQl5BYNxgbvU3gbMqkZZQ6OpwT4RnT8RS+ks6TXCw==
@@ -3348,6 +3348,11 @@ react-dom@18.3.1:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
+
+react-hook-form@^7.53.0:
+  version "7.53.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.53.0.tgz#3cf70951bf41fa95207b34486203ebefbd3a05ab"
+  integrity sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==
 
 react-is@^16.13.1:
   version "16.13.1"

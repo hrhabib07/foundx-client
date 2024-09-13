@@ -1,7 +1,11 @@
+import Landing from "@/src/components/modules/home/Landing";
+import RecentPosts from "@/src/components/modules/home/RecentPosts";
+
 export default function Home() {
   return (
     <>
-      <h2>welcome to FoundX home page</h2>
+    <Landing />
+    <RecentPosts />
     </>
   );
 }
