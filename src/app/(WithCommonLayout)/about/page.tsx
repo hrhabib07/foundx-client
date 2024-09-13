@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const page = () => {
   return (
     <div>
