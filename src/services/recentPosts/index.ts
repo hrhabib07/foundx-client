@@ -1,7 +1,11 @@
-const getRecentPosts = async () => {
+import envConfig from "@/src/config/envConfig";
+import { delay } from "@/src/utils/delay";
+
+export const getRecentPosts = async () => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API}/items?sortBy=-createdAt&limit=9`
+    `${envConfig.baseApi}/items?sortBy=-createdAt&limit=9`
   );
-  const data = await res.json();
-  return data;
+  await delay(5000);
+  return res.json();
+  //   const data = await ;
 };
