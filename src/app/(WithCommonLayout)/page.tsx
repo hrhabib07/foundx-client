@@ -13,6 +13,7 @@ export default function Home() {
             Loading ...
           </h2>
         }
+        // I can use error boundary here with perallal routtes
       >
         {/* <PostFeed /> */}
         <RecentPosts />
