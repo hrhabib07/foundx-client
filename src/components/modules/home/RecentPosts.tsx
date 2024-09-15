@@ -16,8 +16,11 @@ const RecentPosts = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-4">
-        {posts.map((item: { title: string }) => (
-          <p>{item.title}</p>
+        {posts.map((item: any) => (
+          <>
+            <p>{item.title}</p>
+            <p>{item.city}</p>
+          </>
         ))}
       </div>
       <div className="flex justify-center">
