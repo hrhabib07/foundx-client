@@ -14,8 +14,8 @@ const loading = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-4">
-        {[...Array(9)].map(() => (
-          <PostCardSkeleton></PostCardSkeleton>
+        {[...Array(9)].map((_, index) => (
+          <PostCardSkeleton key={index}></PostCardSkeleton>
         ))}
       </div>
       <div className="flex justify-center">
