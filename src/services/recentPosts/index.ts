@@ -1,5 +1,4 @@
 import envConfig from "@/src/config/envConfig";
-import { delay } from "@/src/utils/delay";
 
 export const getRecentPosts = async () => {
   try {
@@ -9,7 +8,7 @@ export const getRecentPosts = async () => {
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
-    await delay(3000);
+
     return res.json();
   } catch (error) {
     console.error("Error fetching recent posts:", error);
