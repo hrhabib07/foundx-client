@@ -8,8 +8,14 @@ import {
   DropdownTrigger,
 } from "@nextui-org/dropdown";
 import { Avatar } from "@nextui-org/avatar";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const NavbarDropdown = () => {
+  const router = useRouter();
+  const handleNavigation = (pathname: string) => {
+    router.push(pathname);
+  };
   return (
     <>
       <Dropdown>
@@ -18,11 +24,26 @@ const NavbarDropdown = () => {
           {/* <Button variant="bordered">Open Menu</Button> */}
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
-          <DropdownItem key="new">New file</DropdownItem>
-          <DropdownItem key="copy">Copy link</DropdownItem>
-          <DropdownItem key="edit">Edit file</DropdownItem>
+          <DropdownItem
+            onClick={() => handleNavigation("/profile")}
+            key="profile"
+          >
+            Profile
+          </DropdownItem>
+          <DropdownItem
+            onClick={() => handleNavigation("/profile/create-post")}
+            key="create-post"
+          >
+            Create Post
+          </DropdownItem>
+          <DropdownItem
+            onClick={() => handleNavigation("/profile/settings")}
+            key="settings"
+          >
+            Settings
+          </DropdownItem>
           <DropdownItem key="delete" className="text-danger" color="danger">
-            Delete file
+            Logout
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
