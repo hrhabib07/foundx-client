@@ -1,10 +1,10 @@
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 import React from "react";
-import Container from "../../ui/Container";
-import { getRecentPosts } from "@/src/services/recentPosts";
-import PostCard from "../../ui/PostCard";
 import { IPost } from "@/src/types";
+import Container from "@/src/components/ui/Container";
+import PostCard from "@/src/components/ui/PostCard";
+import { getRecentPosts } from "@/src/services/recentPosts";
 
 const RecentPosts = async () => {
   const { data: posts } = await getRecentPosts();

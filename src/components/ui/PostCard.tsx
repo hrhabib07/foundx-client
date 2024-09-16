@@ -23,11 +23,11 @@ const PostCard = ({ post }: { post: IPost }) => {
           className="rounded-t-lg"
         />
         {/* Title on Top Left */}
-        <div className="absolute top-2 left-2 bg-black bg-opacity-60 text-white px-2 py-1 rounded">
+        <div className="absolute top-2 left-2 bg-black bg-opacity-40 text-white px-2 py-1 rounded">
           {title}
         </div>
         {/* Category on Top Right */}
-        <div className="absolute top-2 right-2 bg-black bg-opacity-60 text-white px-2 py-1 rounded">
+        <div className="absolute top-1 right-1 bg-black bg-opacity-90 text-white px-1 py-1 rounded-lg text-sm">
           {category?.name}
         </div>
       </div>
