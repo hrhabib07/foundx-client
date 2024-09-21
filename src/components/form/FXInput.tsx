@@ -1,17 +1,35 @@
 import { Input } from "@nextui-org/input";
+import { useFormContext } from "react-hook-form";
 
 interface IProps {
-  variant: "bordered" | "flat" | "faded" | "underlined";
-  size: "md" | "sm" | "lg";
-  required: boolean;
+  variant?: "bordered" | "flat" | "faded" | "underlined";
+  size?: "md" | "sm" | "lg";
+  required?: boolean;
+  type?: string;
+  label: string;
+  name: string;
 }
 
 const FXInput = ({
   variant = "bordered",
   size = "md",
   required = false,
+  type = "text",
+  label,
+  name,
 }: IProps) => {
-  return <Input variant={variant} size={size} required={required}></Input>;
+  const { register } = useFormContext();
+  return (
+    <Input
+      {...register}
+      variant={variant}
+      size={size}
+      required={required}
+      type={type}
+      label={label}
+      name={name}
+    ></Input>
+  );
 };
 
 export default FXInput;
