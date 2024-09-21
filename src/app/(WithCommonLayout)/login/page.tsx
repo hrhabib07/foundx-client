@@ -1,10 +1,12 @@
+"use client";
 import FXForm from "@/src/components/form/FXForm";
 import FXInput from "@/src/components/form/FXInput";
 import { Button } from "@nextui-org/button";
 import React from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const LoginPage = () => {
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
   return (
@@ -13,9 +15,20 @@ const LoginPage = () => {
         <h2 className="my-4 text-xl font-bold">This is login page</h2>
         <div className="w-80 flex flex-col gap-4">
           <FXForm onSubmit={onSubmit}>
-            <FXInput type="email" label="Email" name="email"></FXInput>
-            <FXInput type="password" label="Password" name="password"></FXInput>
-            <Button type="submit"> Login</Button>
+            <div className="py-3">
+              <FXInput name="email" label="Email" type="email" />
+            </div>
+            <div className="py-3">
+              <FXInput name="password" label="Password" type="password" />
+            </div>
+
+            <Button
+              className="my-3 w-full rounded-md bg-default-900 font-semibold text-default"
+              size="lg"
+              type="submit"
+            >
+              Login
+            </Button>
           </FXForm>
         </div>
       </div>

@@ -1,3 +1,4 @@
+"use client";
 import { Input } from "@nextui-org/input";
 import { useFormContext } from "react-hook-form";
 
@@ -21,13 +22,13 @@ const FXInput = ({
   const { register } = useFormContext();
   return (
     <Input
-      {...register}
+      {...register(name)}
+      name={name}
       variant={variant}
       size={size}
       required={required}
       type={type}
       label={label}
-      name={name}
     ></Input>
   );
 };
