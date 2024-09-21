@@ -4,6 +4,8 @@ import FXInput from "@/src/components/form/FXInput";
 import { Button } from "@nextui-org/button";
 import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import loginValidationSchema from "@/src/schemas/login.schema";
 
 const LoginPage = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -14,7 +16,10 @@ const LoginPage = () => {
       <div>
         <h2 className="my-4 text-xl font-bold">This is login page</h2>
         <div className="w-80 flex flex-col gap-4">
-          <FXForm onSubmit={onSubmit}>
+          <FXForm
+            onSubmit={onSubmit}
+            resolver={zodResolver(loginValidationSchema)}
+          >
             <div className="py-3">
               <FXInput name="email" label="Email" type="email" />
             </div>
