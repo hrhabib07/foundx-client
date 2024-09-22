@@ -9,12 +9,14 @@ import loginValidationSchema from "@/src/schemas/login.schema";
 import { useUserLogin } from "@/src/hooks/auth.hook";
 import LoadingSpinner from "@/src/components/ui/LoadingSpinner";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useUser } from "@/src/context/UserProvider";
 
 const LoginPage = () => {
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
+  const { setIsLoading: userLoading } = useUser();
   const router = useRouter();
-  console.log(redirect);
+  const redirect = searchParams.get("redirect");
+  // console.log(redirect);
   const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
   if (!isPending && isSuccess) {
     if (redirect) {
@@ -25,6 +27,7 @@ const LoginPage = () => {
   }
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     handleUserLogin(data);
+    userLoading(true);
   };
   return (
     <>
