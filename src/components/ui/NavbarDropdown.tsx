@@ -13,7 +13,7 @@ import { useUser } from "@/src/context/UserProvider";
 
 const NavbarDropdown = async () => {
   const router = useRouter();
-  const { setIsLoading: userLoading } = useUser();
+  const { setIsLoading: userLoading, user } = useUser();
   const handleNavigation = (pathname: string) => {
     router.push(pathname);
   };
@@ -27,7 +27,7 @@ const NavbarDropdown = async () => {
     <>
       <Dropdown>
         <DropdownTrigger>
-          <Avatar className="cursor-pointer" name="jon" />
+          <Avatar className="cursor-pointer" src={user?.profilePhoto} />
           {/* <Button variant="bordered">Open Menu</Button> */}
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">

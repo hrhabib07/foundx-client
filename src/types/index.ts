@@ -52,5 +52,6 @@ export interface IDecodedUser {
   email: string;
   mobileNumber: string;
   role: string;
+  profilePhoto: string;
   status: string;
 }
