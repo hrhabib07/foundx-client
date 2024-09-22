@@ -53,6 +53,4 @@ export interface IDecodedUser {
   mobileNumber: string;
   role: string;
   status: string;
-  iat: number;
-  exp: number;
 }
