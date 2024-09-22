@@ -13,27 +13,13 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 export default function RegisterPage() {
   const { mutate: handleUserRegistration, isPending } = useUserRegistration();
 
-  // const {
-  //   mutate: handleUserRegistration,
-  //   isPending,
-  //   isError,
-  //   data,
-  //   isSuccess,
-  // } = useMutation({
-  //   mutationKey: ["USER_REGISTRATION"],
-  //   mutationFn: async (userData) => await registerUser(userData),
-  //   onSuccess: () => {
-  //     console.log("user registration successful");
-  //   },
-  // });
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const userData = {
       ...data,
       profilePhoto:
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     };
-    console.log("Inside form user data: ", userData);
+    // console.log("Inside form user data: ", userData);
     handleUserRegistration(userData);
   };
   if (isPending) {
