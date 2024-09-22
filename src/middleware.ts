@@ -14,20 +14,17 @@ type Role = keyof typeof roleBasedRoutes;
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const token = await getCurrentUser();
-  console.log("token", token);
-  // console.log(pathname);
-  // const user = {
-  //   name: "habib",
-  //   token: "fljds fasdf",
-  //   role: "ADMIN",
-  // };
-  const user = undefined;
+  // let user = undefined;
+  const user = await getCurrentUser();
+  // console.log("token", token);
+
   if (!user) {
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
-      return NextResponse.redirect(new URL("/", request.url));
+      return NextResponse.redirect(
+        new URL(`/login?redirect=${pathname}`, request.url)
+      );
     }
   }
 
@@ -43,5 +40,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/profile", "/admin", "/login", "/register"],
+  matcher: ["/profile", "/profile/:page*", "/admin", "/login", "/register"],
 };

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "@nextui-org/button";
 import {
   Dropdown,
   DropdownItem,
@@ -8,14 +7,15 @@ import {
   DropdownTrigger,
 } from "@nextui-org/dropdown";
 import { Avatar } from "@nextui-org/avatar";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { logoutUser } from "@/src/services/authService";
 
-const NavbarDropdown = () => {
+const NavbarDropdown = async () => {
   const router = useRouter();
   const handleNavigation = (pathname: string) => {
     router.push(pathname);
   };
+
   return (
     <>
       <Dropdown>
@@ -42,7 +42,12 @@ const NavbarDropdown = () => {
           >
             Settings
           </DropdownItem>
-          <DropdownItem key="delete" className="text-danger" color="danger">
+          <DropdownItem
+            onClick={() => logoutUser()}
+            key="delete"
+            className="text-danger"
+            color="danger"
+          >
             Logout
           </DropdownItem>
         </DropdownMenu>

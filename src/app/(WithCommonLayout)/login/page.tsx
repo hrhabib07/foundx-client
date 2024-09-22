@@ -8,9 +8,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import loginValidationSchema from "@/src/schemas/login.schema";
 import { useUserLogin } from "@/src/hooks/auth.hook";
 import LoadingSpinner from "@/src/components/ui/LoadingSpinner";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginPage = () => {
-  const { mutate: handleUserLogin, isPending } = useUserLogin();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
+  const router = useRouter();
+  console.log(redirect);
+  const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
+  if (!isPending && isSuccess) {
+    if (redirect) {
+      router.push(redirect);
+    } else {
+      router.push("/");
+    }
+  }
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     handleUserLogin(data);
   };
