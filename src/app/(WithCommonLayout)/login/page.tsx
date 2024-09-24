@@ -34,7 +34,8 @@ const LoginPage = () => {
       {isPending && <LoadingSpinner />}
       <div className="min-h-[calc(100vh-120px)] flex items-center justify-center">
         <div>
-          <h2 className="my-4 text-xl font-bold">This is login page</h2>
+          <h3 className="my-2 text-xl font-bold">Login to FoundX</h3>
+          <p className="mb-4">Help Lost Items Find Their Way Home</p>
           <div className="w-80 flex flex-col gap-4">
             <FXForm
               onSubmit={onSubmit}
