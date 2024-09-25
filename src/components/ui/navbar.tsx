@@ -20,9 +20,12 @@ import { ThemeSwitch } from "@/src/components/ui/theme-switch";
 import { Logo } from "@/src/components/icons";
 import NavbarDropdown from "./NavbarDropdown";
 import UserProvider, { useUser } from "@/src/context/UserProvider";
+import { Button } from "@nextui-org/button";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const { user } = useUser();
+  const router = useRouter();
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
@@ -64,7 +67,9 @@ export const Navbar = () => {
             <NavbarDropdown />
           </NavbarItem>
         ) : (
-          <Link href="/login">Login</Link>
+          <NavbarItem className="hidden sm:flex gap-2">
+            <Button onClick={() => router.push("/login")}>Login</Button>
+          </NavbarItem>
         )}
       </NavbarContent>
 

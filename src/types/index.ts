@@ -55,3 +55,9 @@ export interface IDecodedUser {
   profilePhoto: string;
   status: string;
 }
+export interface IInput {
+  required?: boolean;
+  type?: string;
+  label: string;
+  name: string;
+}
