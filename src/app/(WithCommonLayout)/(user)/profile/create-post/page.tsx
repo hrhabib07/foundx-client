@@ -15,6 +15,7 @@ import FXInput from "@/src/components/form/FXInput";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/src/context/UserProvider";
 import FXDatePicker from "@/src/components/form/FXDatePicker";
+import dateToISO from "@/src/utils/dateToISO";
 
 // const cityOptions = allDistict()
 //   .sort()
@@ -66,6 +67,13 @@ export default function CreatePost() {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const postData = {
+      ...data,
+      question: data.questions.map((que: { value: string }) => que.value),
+      dateFound: dateToISO(data.dateFound),
+    };
+    console.log(postData);
+
     const formData = new FormData();
 
     // formData.append("data", JSON.stringify(postData));
