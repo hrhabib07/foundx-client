@@ -11,7 +11,11 @@ const FXDatePicker = ({ label, name }: IProps) => {
       <Controller
         name={name}
         render={({ field: { value, ...fields } }) => (
-          <DatePicker label={label} className="max-w-[284px]" {...fields} />
+          <DatePicker
+            label={label}
+            className="min-w-full sm:min-w-[225px]"
+            {...fields}
+          />
         )}
       />
     </>
