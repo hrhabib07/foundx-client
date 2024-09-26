@@ -8,6 +8,7 @@ interface IProps extends IInput {
     key: string;
     label: string;
   }[];
+  disabled?: boolean;
 }
 
 const FXSelect = ({ options, name, label }: IProps) => {

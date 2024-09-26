@@ -18,6 +18,7 @@ import FXDatePicker from "@/src/components/form/FXDatePicker";
 import dateToISO from "@/src/utils/dateToISO";
 import allDistrict from "@bangladeshi/bangladesh-address";
 import FXSelect from "@/src/components/form/FXSelect";
+import { useGetCategories } from "@/src/hooks/categories.hook";
 
 const cityOptions = allDistrict
   .allDistict()
@@ -44,22 +45,22 @@ export default function CreatePost() {
 
   const { user } = useUser();
 
-  // const {
-  //   data: categoriesData,
-  //   isLoading: categoryLoading,
-  //   isSuccess: categorySuccess,
-  // } = useGetCategories();
+  const {
+    data: categoriesData,
+    isLoading: categoryLoading,
+    isSuccess: categorySuccess,
+  } = useGetCategories();
 
-  // let categoryOption: { key: string; label: string }[] = [];
+  let categoryOption: { key: string; label: string }[] = [];
 
-  // if (categoriesData?.data && !categoryLoading) {
-  //   categoryOption = categoriesData.data
-  //     .sort()
-  //     .map((category: { _id: string; name: string }) => ({
-  //       key: category._id,
-  //       label: category.name,
-  //     }));
-  // }
+  if (categoriesData?.data && !categoryLoading) {
+    categoryOption = categoriesData.data
+      .sort()
+      .map((category: { _id: string; name: string }) => ({
+        key: category._id,
+        label: category.name,
+      }));
+  }
 
   const methods = useForm();
 
@@ -132,14 +133,14 @@ export default function CreatePost() {
               </div>
             </div>
             <div className="flex flex-wrap gap-2 py-2">
-              {/* <div className="min-w-fit flex-1">
+              <div className="min-w-fit flex-1">
                 <FXSelect
                   disabled={!categorySuccess}
                   label="Category"
                   name="category"
                   options={categoryOption}
                 />
-              </div> */}
+              </div>
               <div className="min-w-fit flex-1">
                 <label
                   className="flex h-14 w-full cursor-pointer items-center justify-center rounded-xl border-2 border-default-200 text-default-500 shadow-sm transition-all duration-100 hover:border-default-400"
