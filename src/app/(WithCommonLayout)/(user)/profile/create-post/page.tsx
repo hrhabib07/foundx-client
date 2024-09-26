@@ -16,15 +16,19 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/src/context/UserProvider";
 import FXDatePicker from "@/src/components/form/FXDatePicker";
 import dateToISO from "@/src/utils/dateToISO";
+import allDistrict from "@bangladeshi/bangladesh-address";
+import FXSelect from "@/src/components/form/FXSelect";
 
-// const cityOptions = allDistict()
-//   .sort()
-//   .map((city: string) => {
-//     return {
-//       key: city,
-//       label: city,
-//     };
-//   });
+const cityOptions = allDistrict
+  .allDistict()
+  .sort()
+  .map((city: string) => {
+    return {
+      key: city,
+      label: city,
+    };
+  });
+// console.log(cityOptions);
 
 export default function CreatePost() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
@@ -124,7 +128,7 @@ export default function CreatePost() {
                 <FXInput label="Location" name="location" />
               </div>
               <div className="min-w-fit flex-1">
-                {/* <FXSelect label="City" name="city" options={cityOptions} /> */}
+                <FXSelect label="City" name="city" options={cityOptions} />
               </div>
             </div>
             <div className="flex flex-wrap gap-2 py-2">
