@@ -33,7 +33,7 @@ const cityOptions = allDistrict
 
 export default function CreatePost() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
-  const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
+  console.log(imageFiles);
 
   const router = useRouter();
 
@@ -82,30 +82,15 @@ export default function CreatePost() {
     const formData = new FormData();
 
     // formData.append("data", JSON.stringify(postData));
-
-    for (let image of imageFiles) {
-      formData.append("itemImages", image);
-    }
   };
 
   const handleFieldAppend = () => {
     append({ name: "questions" });
   };
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files![0];
-
+  const handleImageChange = (e: any) => {
+    const file = e?.target?.files[0];
     setImageFiles((prev) => [...prev, file]);
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setImagePreviews((prev) => [...prev, reader.result as string]);
-      };
-
-      reader.readAsDataURL(file);
-    }
   };
 
   return (
@@ -143,37 +128,20 @@ export default function CreatePost() {
               </div>
               <div className="min-w-fit flex-1">
                 <label
-                  className="flex h-14 w-full cursor-pointer items-center justify-center rounded-xl border-2 border-default-200 text-default-500 shadow-sm transition-all duration-100 hover:border-default-400"
+                  className="block h-full rounded-lg w-full p-4 bg-gray-600"
                   htmlFor="image"
                 >
-                  Upload image
+                  Upload
                 </label>
                 <input
-                  multiple
                   className="hidden"
                   id="image"
+                  multiple
                   type="file"
                   onChange={(e) => handleImageChange(e)}
                 />
               </div>
             </div>
-
-            {imagePreviews.length > 0 && (
-              <div className="flex gap-5 my-5 flex-wrap">
-                {imagePreviews.map((imageDataUrl) => (
-                  <div
-                    key={imageDataUrl}
-                    className="relative size-48 rounded-xl border-2 border-dashed border-default-300 p-2"
-                  >
-                    <img
-                      alt="item"
-                      className="h-full w-full object-cover object-center rounded-md"
-                      src={imageDataUrl}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
 
             <div className="flex flex-wrap-reverse gap-2 py-2">
               <div className="min-w-fit flex-1">
