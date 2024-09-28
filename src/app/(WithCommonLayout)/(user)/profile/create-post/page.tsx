@@ -33,7 +33,8 @@ const cityOptions = allDistrict
 
 export default function CreatePost() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
-  console.log(imageFiles);
+  const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
+  console.log(imagePreviews);
 
   const router = useRouter();
 
@@ -91,6 +92,14 @@ export default function CreatePost() {
   const handleImageChange = (e: any) => {
     const file = e?.target?.files[0];
     setImageFiles((prev) => [...prev, file]);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreviews((prev) => [...prev, reader.result as string]);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -142,7 +151,18 @@ export default function CreatePost() {
                 />
               </div>
             </div>
-
+            <div className="flex gap-4 flex-wrap">
+              {imagePreviews.length > 0 &&
+                imagePreviews.map((imageDataUrl) => (
+                  <div className="relative size-48 rounded-xl border-2 border-dashed border-default-300 p-2">
+                    <img
+                      className="h-full w-full object-cover object-contain"
+                      src={imageDataUrl}
+                      alt="selected-image"
+                    />
+                  </div>
+                ))}
+            </div>
             <div className="flex flex-wrap-reverse gap-2 py-2">
               <div className="min-w-fit flex-1">
                 {/* <FXTextarea label="Description" name="description" /> */}
