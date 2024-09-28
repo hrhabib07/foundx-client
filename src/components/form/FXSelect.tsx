@@ -22,6 +22,7 @@ const FXSelect = ({ options, name, label, disabled }: IProps) => {
       label={label}
       className="min-w-full sm:min-w-[225px]"
       isDisabled={disabled}
+      variant="bordered"
     >
       {options.map((option) => (
         <SelectItem key={option.key}>{option.label}</SelectItem>

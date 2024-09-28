@@ -13,6 +13,7 @@ const FXDatePicker = ({ label, name }: IProps) => {
         render={({ field: { value, ...fields } }) => (
           <DatePicker
             label={label}
+            variant="bordered"
             className="min-w-full sm:min-w-[225px]"
             {...fields}
           />

@@ -22,6 +22,7 @@ import { useGetCategories } from "@/src/hooks/categories.hook";
 import FXTextarea from "@/src/components/form/FXTextArea";
 import { AddIcon, TrashIcon } from "@/src/assets/icons";
 import { useCreatePost } from "@/src/hooks/post.hook";
+import LoadingSpinner from "@/src/components/ui/LoadingSpinner";
 
 const cityOptions = allDistrict
   .allDistict()
@@ -44,7 +45,7 @@ export default function CreatePost() {
   const {
     mutate: handleCreatePost,
     isPending: createPostPending,
-    isSuccess,
+    isSuccess: createPostSuccess,
   } = useCreatePost();
 
   const { user } = useUser();
@@ -108,9 +109,12 @@ export default function CreatePost() {
     }
   };
 
+  if (!createPostPending && createPostSuccess) {
+    router.push("/");
+  }
   return (
     <>
-      {/* {createPostPending && <Loading />} */}
+      {createPostPending && <LoadingSpinner />}
       <div className="h-full rounded-xl bg-gradient-to-b from-default-100 px-[73px] py-12">
         <h1 className="text-2xl font-semibold">Post a found item</h1>
         <Divider className="mb-5 mt-3" />
@@ -143,32 +147,38 @@ export default function CreatePost() {
               </div>
               <div className="min-w-fit flex-1">
                 <label
-                  className="block h-full rounded-lg w-full p-4 bg-gray-600"
+                  className="flex h-14 w-full cursor-pointer items-center justify-center rounded-xl border-2 border-default-200 text-default-500 shadow-sm transition-all duration-100 hover:border-default-400"
                   htmlFor="image"
                 >
-                  Upload
+                  Upload image
                 </label>
                 <input
+                  multiple
                   className="hidden"
                   id="image"
-                  multiple
                   type="file"
                   onChange={(e) => handleImageChange(e)}
                 />
               </div>
             </div>
-            <div className="flex gap-4 flex-wrap">
-              {imagePreviews.length > 0 &&
-                imagePreviews.map((imageDataUrl) => (
-                  <div className="relative size-48 rounded-xl border-2 border-dashed border-default-300 p-2">
+
+            {imagePreviews.length > 0 && (
+              <div className="flex gap-5 my-5 flex-wrap">
+                {imagePreviews.map((imageDataUrl) => (
+                  <div
+                    key={imageDataUrl}
+                    className="relative size-48 rounded-xl border-2 border-dashed border-default-300 p-2"
+                  >
                     <img
-                      className="h-full w-full object-cover object-contain"
+                      alt="item"
+                      className="h-full w-full object-cover object-center rounded-md"
                       src={imageDataUrl}
-                      alt="selected-image"
                     />
                   </div>
                 ))}
-            </div>
+              </div>
+            )}
+
             <div className="flex flex-wrap-reverse gap-2 py-2">
               <div className="min-w-fit flex-1">
                 <FXTextarea label="Description" name="description" />
