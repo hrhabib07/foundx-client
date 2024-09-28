@@ -19,6 +19,8 @@ import dateToISO from "@/src/utils/dateToISO";
 import allDistrict from "@bangladeshi/bangladesh-address";
 import FXSelect from "@/src/components/form/FXSelect";
 import { useGetCategories } from "@/src/hooks/categories.hook";
+import FXTextarea from "@/src/components/form/FXTextArea";
+import { AddIcon, TrashIcon } from "@/src/assets/icons";
 
 const cityOptions = allDistrict
   .allDistict()
@@ -35,6 +37,7 @@ export default function CreatePost() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
   console.log(imagePreviews);
+  // const  = useUser();
 
   const router = useRouter();
 
@@ -73,16 +76,20 @@ export default function CreatePost() {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const formData = new FormData();
     const postData = {
       ...data,
-      question: data.questions.map((que: { value: string }) => que.value),
+      questions: data.questions.map((que: { value: string }) => que.value),
       dateFound: dateToISO(data.dateFound),
+      user: user?._id,
     };
-    console.log(postData);
-
-    const formData = new FormData();
-
-    // formData.append("data", JSON.stringify(postData));
+    formData.append("data", JSON.stringify(postData));
+    // console.log(postData);
+    for (let image of imageFiles) {
+      formData.append("itemImages", image);
+    }
+    console.log(formData.get("data"));
+    console.log(formData.get("itemImages"));
   };
 
   const handleFieldAppend = () => {
@@ -165,7 +172,7 @@ export default function CreatePost() {
             </div>
             <div className="flex flex-wrap-reverse gap-2 py-2">
               <div className="min-w-fit flex-1">
-                {/* <FXTextarea label="Description" name="description" /> */}
+                <FXTextarea label="Description" name="description" />
               </div>
             </div>
 
@@ -174,7 +181,7 @@ export default function CreatePost() {
             <div className="flex justify-between items-center mb-5">
               <h1 className="text-xl">Owner verification questions</h1>
               <Button isIconOnly onClick={() => handleFieldAppend()}>
-                {/* <AddIcon /> */}
+                <AddIcon />
               </Button>
             </div>
 
@@ -187,7 +194,7 @@ export default function CreatePost() {
                     className="h-14 w-16"
                     onClick={() => remove(index)}
                   >
-                    {/* <TrashIcon /> */}
+                    <TrashIcon />
                   </Button>
                 </div>
               ))}
