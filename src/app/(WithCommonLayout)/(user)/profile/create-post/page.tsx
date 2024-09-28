@@ -21,6 +21,7 @@ import FXSelect from "@/src/components/form/FXSelect";
 import { useGetCategories } from "@/src/hooks/categories.hook";
 import FXTextarea from "@/src/components/form/FXTextArea";
 import { AddIcon, TrashIcon } from "@/src/assets/icons";
+import { useCreatePost } from "@/src/hooks/post.hook";
 
 const cityOptions = allDistrict
   .allDistict()
@@ -37,15 +38,14 @@ export default function CreatePost() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
   console.log(imagePreviews);
-  // const  = useUser();
 
   const router = useRouter();
 
-  // const {
-  //   mutate: handleCreatePost,
-  //   isPending: createPostPending,
-  //   isSuccess,
-  // } = useCreatePost();
+  const {
+    mutate: handleCreatePost,
+    isPending: createPostPending,
+    isSuccess,
+  } = useCreatePost();
 
   const { user } = useUser();
 
@@ -88,8 +88,7 @@ export default function CreatePost() {
     for (let image of imageFiles) {
       formData.append("itemImages", image);
     }
-    console.log(formData.get("data"));
-    console.log(formData.get("itemImages"));
+    handleCreatePost(formData);
   };
 
   const handleFieldAppend = () => {
