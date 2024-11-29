@@ -9,8 +9,9 @@ export const getRecentPosts = async () => {
     };
     const res = await fetch(
       `${envConfig.baseApi}/items?sortBy=-createdAt&limit=9`,
-      fetchOptions
+      fetchOptions,
     );
+
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }

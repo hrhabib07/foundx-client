@@ -1,7 +1,8 @@
-import { IInput } from "@/src/types";
 import { DatePicker } from "@nextui-org/date-picker";
 import React from "react";
 import { Controller } from "react-hook-form";
+
+import { IInput } from "@/src/types";
 
 interface IProps extends IInput {}
 
@@ -12,9 +13,9 @@ const FXDatePicker = ({ label, name }: IProps) => {
         name={name}
         render={({ field: { value, ...fields } }) => (
           <DatePicker
+            className="min-w-full sm:min-w-[225px]"
             label={label}
             variant="bordered"
-            className="min-w-full sm:min-w-[225px]"
             {...fields}
           />
         )}

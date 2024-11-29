@@ -1,14 +1,15 @@
 "use client";
-import FXForm from "@/src/components/form/FXForm";
-import FXInput from "@/src/components/form/FXInput";
 import { Button } from "@nextui-org/button";
 import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter, useSearchParams } from "next/navigation";
+
+import FXForm from "@/src/components/form/FXForm";
+import FXInput from "@/src/components/form/FXInput";
 import loginValidationSchema from "@/src/schemas/login.schema";
 import { useUserLogin } from "@/src/hooks/auth.hook";
 import LoadingSpinner from "@/src/components/ui/LoadingSpinner";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useUser } from "@/src/context/UserProvider";
 
 const LoginPage = () => {
@@ -18,6 +19,7 @@ const LoginPage = () => {
   const redirect = searchParams.get("redirect");
   // console.log(redirect);
   const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
+
   if (!isPending && isSuccess) {
     if (redirect) {
       router.push(redirect);
@@ -29,6 +31,7 @@ const LoginPage = () => {
     handleUserLogin(data);
     userLoading(true);
   };
+
   return (
     <>
       {isPending && <LoadingSpinner />}
@@ -38,14 +41,14 @@ const LoginPage = () => {
           <p className="mb-4">Help Lost Items Find Their Way Home</p>
           <div className="w-80 flex flex-col gap-4">
             <FXForm
-              onSubmit={onSubmit}
               resolver={zodResolver(loginValidationSchema)}
+              onSubmit={onSubmit}
             >
               <div className="py-3">
-                <FXInput name="email" label="Email" type="email" />
+                <FXInput label="Email" name="email" type="email" />
               </div>
               <div className="py-3">
-                <FXInput name="password" label="Password" type="password" />
+                <FXInput label="Password" name="password" type="password" />
               </div>
 
               <Button

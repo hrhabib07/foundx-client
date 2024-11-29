@@ -6,8 +6,8 @@ const PostCardSkeleton = () => {
   return (
     <Card
       isFooterBlurred
-      radius="lg"
       className="w-full max-w-sm shadow-lg overflow-hidden"
+      radius="lg"
     >
       {/* Image Section (Skeleton) */}
       <div className="relative w-full h-64 bg-gray-300">

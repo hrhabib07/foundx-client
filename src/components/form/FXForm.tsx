@@ -14,6 +14,7 @@ interface IProps extends formConfig {
 
 const FXForm = ({ children, onSubmit, defaultValues, resolver }: IProps) => {
   const formConfig: formConfig = {};
+
   if (!!defaultValues) {
     formConfig["defaultValues"] = defaultValues;
   }
@@ -22,6 +23,7 @@ const FXForm = ({ children, onSubmit, defaultValues, resolver }: IProps) => {
   }
   const methods = useForm(formConfig);
   const submitHandler = methods.handleSubmit;
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={submitHandler(onSubmit)}>{children}</form>

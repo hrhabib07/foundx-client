@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 import React from "react";
+
 import Container from "@/src/components/ui/Container";
 import PostCardSkeleton from "@/src/components/ui/PostCardSkeleton";
 
@@ -15,7 +16,7 @@ const loading = async () => {
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-4">
         {[...Array(9)].map((_, index) => (
-          <PostCardSkeleton key={index}></PostCardSkeleton>
+          <PostCardSkeleton key={index} />
         ))}
       </div>
       <div className="flex justify-center">

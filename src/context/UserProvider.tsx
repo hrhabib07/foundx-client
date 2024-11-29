@@ -9,6 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
+
 import { IDecodedUser } from "../types";
 import { getCurrentUser } from "../services/authService";
 interface IUserProviderValues {
@@ -24,12 +25,15 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const handleUser = async () => {
     const user = await getCurrentUser();
+
     setUser(user);
     setIsLoading(false);
   };
+
   useEffect(() => {
     handleUser();
   }, [isLoading]);
+
   return (
     <UserContext.Provider value={{ user, setUser, isLoading, setIsLoading }}>
       {children}
@@ -39,9 +43,11 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
 export const useUser = () => {
   const context = useContext(UserContext);
+
   if (context === undefined) {
     throw new Error("useUser must be within the userProviderContext");
   }
+
   return context;
 };
 export default UserProvider;

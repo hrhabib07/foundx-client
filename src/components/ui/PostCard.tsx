@@ -1,26 +1,28 @@
-import { IPost } from "@/src/types";
 import React from "react";
 import Image from "next/image";
 import { Card, CardFooter } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
 import { format } from "date-fns";
 
+import { IPost } from "@/src/types";
+
 const PostCard = ({ post }: { post: IPost }) => {
   const { title, images, category, location, dateFound } = post;
+
   return (
     <Card
       isFooterBlurred
-      radius="lg"
       className="w-full max-w-sm shadow-lg overflow-hidden"
+      radius="lg"
     >
       {/* Image Section */}
       <div className="relative w-full h-64">
         <Image
-          src={images[0]}
           alt={title}
+          className="rounded-t-lg"
           layout="fill"
           objectFit="cover"
-          className="rounded-t-lg"
+          src={images[0]}
         />
         {/* Title on Top Left */}
         <div className="absolute top-2 left-2 bg-black bg-opacity-40 text-white px-2 py-1 rounded">

@@ -1,14 +1,12 @@
 "use client";
 
-import FXForm from "@/src/components/form/FXForm";
-import FXInput from "@/src/components/form/FXInput";
-import { useUserRegistration } from "@/src/hooks/auth.hook";
-import { registerUser } from "@/src/services/authService";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
-import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+
+import { useUserRegistration } from "@/src/hooks/auth.hook";
+import FXInput from "@/src/components/form/FXInput";
+import FXForm from "@/src/components/form/FXForm";
 
 export default function RegisterPage() {
   const { mutate: handleUserRegistration, isPending } = useUserRegistration();
@@ -19,12 +17,15 @@ export default function RegisterPage() {
       profilePhoto:
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     };
+
     // console.log("Inside form user data: ", userData);
     handleUserRegistration(userData);
   };
+
   if (isPending) {
     //handle loading state
   }
+
   return (
     <div className="flex h-[calc(100vh-100px)] flex-col items-center justify-center">
       <h3 className="my-2 text-xl font-bold">Register with FoundX</h3>

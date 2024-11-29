@@ -9,18 +9,18 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-
 import { Link } from "@nextui-org/link";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { Button } from "@nextui-org/button";
+import { useRouter } from "next/navigation";
+
+import NavbarDropdown from "./NavbarDropdown";
 
 import { siteConfig } from "@/src/config/site";
 import { ThemeSwitch } from "@/src/components/ui/theme-switch";
-import NavbarDropdown from "./NavbarDropdown";
-import UserProvider, { useUser } from "@/src/context/UserProvider";
-import { Button } from "@nextui-org/button";
-import { useRouter } from "next/navigation";
+import { useUser } from "@/src/context/UserProvider";
 import { Logo } from "@/src/assets/icons";
 
 export const Navbar = () => {
@@ -42,7 +42,7 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
                 color="foreground"
                 href={item.href}

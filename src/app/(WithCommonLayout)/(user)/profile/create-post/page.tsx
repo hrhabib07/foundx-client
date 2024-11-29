@@ -9,14 +9,14 @@ import {
   useFieldArray,
   useForm,
 } from "react-hook-form";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import allDistrict from "@bangladeshi/bangladesh-address";
 
 import FXInput from "@/src/components/form/FXInput";
-import { useRouter } from "next/navigation";
 import { useUser } from "@/src/context/UserProvider";
 import FXDatePicker from "@/src/components/form/FXDatePicker";
 import dateToISO from "@/src/utils/dateToISO";
-import allDistrict from "@bangladeshi/bangladesh-address";
 import FXSelect from "@/src/components/form/FXSelect";
 import { useGetCategories } from "@/src/hooks/categories.hook";
 import FXTextarea from "@/src/components/form/FXTextArea";
@@ -38,6 +38,7 @@ const cityOptions = allDistrict
 export default function CreatePost() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
+
   console.log(imagePreviews);
 
   const router = useRouter();
@@ -84,6 +85,7 @@ export default function CreatePost() {
       dateFound: dateToISO(data.dateFound),
       user: user?._id,
     };
+
     formData.append("data", JSON.stringify(postData));
     // console.log(postData);
     for (let image of imageFiles) {
@@ -98,10 +100,12 @@ export default function CreatePost() {
 
   const handleImageChange = (e: any) => {
     const file = e?.target?.files[0];
+
     setImageFiles((prev) => [...prev, file]);
 
     if (file) {
       const reader = new FileReader();
+
       reader.onloadend = () => {
         setImagePreviews((prev) => [...prev, reader.result as string]);
       };
@@ -112,6 +116,7 @@ export default function CreatePost() {
   if (!createPostPending && createPostSuccess) {
     router.push("/");
   }
+
   return (
     <>
       {createPostPending && <LoadingSpinner />}
